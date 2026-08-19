@@ -2,8 +2,11 @@
 <html lang="nl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate, max-age=0">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="-1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
 <title>Studio46 Ticketswap</title>
 <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
@@ -23,111 +26,42 @@
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    line-height: 1.5;
-    padding: 16px;
-    max-width: 720px;
-    margin: 0 auto;
+    background: var(--bg); color: var(--text); line-height: 1.5;
+    padding: 16px; max-width: 720px; margin: 0 auto;
   }
 
-  .app-header {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    margin-bottom: 4px;
-    padding-bottom: 16px;
-  }
-  .app-header img {
-    width: 64px; height: 64px; border-radius: 50%;
-    flex-shrink: 0;
-    object-fit: cover;
-    display: block;
-    box-shadow: 0 0 30px rgba(255, 230, 0, 0.35);
-  }
-  .app-header h1 {
-    font-size: 28px;
-    font-weight: 900;
-    letter-spacing: -0.5px;
-    line-height: 1.1;
-  }
-  .app-header p {
-    font-size: 14px;
-    color: var(--text-secondary);
-    margin-top: 4px;
-  }
+  .app-header { display: flex; align-items: center; gap: 16px; margin-bottom: 4px; padding-bottom: 16px; }
+  .app-header img { width: 64px; height: 64px; border-radius: 50%; flex-shrink: 0; object-fit: cover; box-shadow: 0 0 30px rgba(255,230,0,0.35); }
+  .app-header h1 { font-size: 28px; font-weight: 900; letter-spacing: -0.5px; line-height: 1.1; }
+  .app-header p { font-size: 14px; color: var(--text-secondary); margin-top: 4px; }
 
-  .divider {
-    height: 1px;
-    background: linear-gradient(90deg, transparent, var(--yellow), transparent);
-    margin-bottom: 24px;
-    opacity: 0.8;
-  }
+  .divider { height: 1px; background: linear-gradient(90deg, transparent, var(--yellow), transparent); margin-bottom: 24px; opacity: 0.8; }
 
-  .section-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 20px;
-  }
-  .section-header h2 {
-    font-size: 20px;
-    font-weight: 800;
-    letter-spacing: -0.3px;
-  }
+  .section-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; flex-wrap: wrap; gap: 12px; }
+  .section-header h2 { font-size: 20px; font-weight: 800; letter-spacing: -0.3px; }
 
   .btn {
-    padding: 12px 20px;
-    border-radius: 999px;
-    border: none;
-    font-size: 13px;
-    font-weight: 800;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    font-family: inherit;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
+    padding: 12px 20px; border-radius: 999px; border: none; font-size: 13px;
+    font-weight: 800; cursor: pointer; transition: all 0.2s ease; font-family: inherit;
+    text-transform: uppercase; letter-spacing: 0.5px; display: inline-flex; align-items: center; gap: 8px;
   }
-  .btn-yellow {
-    background: var(--yellow);
-    color: #000;
-  }
-  .btn-yellow:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 0 20px rgba(255, 230, 0, 0.4);
-  }
-  .btn-outline {
-    background: transparent;
-    color: var(--text);
-    border: 1.5px solid var(--border);
-  }
+  .btn-yellow { background: var(--yellow); color: #000; }
+  .btn-yellow:hover { transform: translateY(-1px); box-shadow: 0 0 20px rgba(255,230,0,0.4); }
+  .btn-outline { background: transparent; color: var(--text); border: 1.5px solid var(--border); }
   .btn-outline:hover { border-color: var(--yellow); color: var(--yellow); }
-  .btn-danger {
-    background: transparent;
-    color: #ff4444;
-    border: 1.5px solid #331111;
-    font-size: 12px;
-  }
+  .btn-danger { background: transparent; color: #ff4444; border: 1.5px solid #331111; font-size: 12px; }
   .btn-danger:hover { background: #331111; }
   .btn-small { padding: 8px 14px; font-size: 12px; }
   .btn-icon {
-    width: 32px; height: 32px; border-radius: 8px; border: none;
-    background: transparent; cursor: pointer; display: flex;
-    align-items: center; justify-content: center;
+    width: 32px; height: 32px; border-radius: 8px; border: none; background: transparent;
+    cursor: pointer; display: flex; align-items: center; justify-content: center;
     color: var(--text-muted); transition: all 0.2s;
   }
-  .btn-icon:hover { background: rgba(255, 68, 68, 0.1); color: #ff4444; }
+  .btn-icon:hover { background: rgba(255,68,68,0.1); color: #ff4444; }
 
   .card {
-    background: var(--card);
-    border-radius: var(--radius);
-    border: 1px solid var(--border);
-    margin-bottom: 16px;
-    overflow: hidden;
-    transition: border-color 0.2s;
+    background: var(--card); border-radius: var(--radius); border: 1px solid var(--border);
+    margin-bottom: 16px; overflow: hidden; transition: border-color 0.2s;
   }
   .card:hover { border-color: var(--border-hover); }
   .card-body { padding: 20px; }
@@ -138,63 +72,42 @@
     color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.5px;
   }
   .form-group input {
-    width: 100%; padding: 12px 14px; border: 1.5px solid var(--border);
-    border-radius: 12px; font-size: 15px; font-family: inherit;
-    background: var(--bg); color: var(--text); transition: all 0.2s;
+    width: 100%; padding: 12px 14px; border: 1.5px solid var(--border); border-radius: 12px;
+    font-size: 15px; font-family: inherit; background: var(--bg); color: var(--text); transition: all 0.2s;
   }
-  .form-group input:focus {
-    outline: none; border-color: var(--yellow);
-    box-shadow: 0 0 0 3px rgba(255, 230, 0, 0.1);
-  }
+  .form-group input:focus { outline: none; border-color: var(--yellow); box-shadow: 0 0 0 3px rgba(255,230,0,0.1); }
   .form-group input::placeholder { color: var(--text-muted); }
   .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
   @media (max-width: 520px) { .form-row { grid-template-columns: 1fr; } }
 
   .event-list { display: flex; flex-direction: column; gap: 12px; }
   .event-item {
-    background: var(--card);
-    border-radius: var(--radius);
-    border: 1px solid var(--border);
-    border-left: 3px solid var(--yellow);
-    padding: 18px;
-    transition: all 0.2s;
+    background: var(--card); border-radius: var(--radius); border: 1px solid var(--border);
+    border-left: 3px solid var(--yellow); padding: 18px; transition: all 0.2s;
   }
-  .event-item:hover {
-    border-color: var(--border-hover);
-    transform: translateY(-2px);
-    box-shadow: 0 0 20px rgba(255, 230, 0, 0.08);
-  }
-  .event-header {
-    display: flex; justify-content: space-between; align-items: flex-start;
-    gap: 12px; flex-wrap: wrap; margin-bottom: 14px;
-  }
+  .event-item:hover { border-color: var(--border-hover); transform: translateY(-2px); box-shadow: 0 0 20px rgba(255,230,0,0.08); }
+  .event-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; flex-wrap: wrap; margin-bottom: 14px; }
   .event-name { font-size: 18px; font-weight: 800; }
   .event-meta { font-size: 13px; color: var(--text-secondary); margin-top: 4px; }
-  .event-stats {
-    display: flex; gap: 16px; margin-top: 10px; font-size: 13px;
-  }
+  .event-stats { display: flex; gap: 16px; margin-top: 10px; font-size: 13px; flex-wrap: wrap; }
   .stat { display: flex; align-items: center; gap: 6px; }
   .stat-dot { width: 8px; height: 8px; border-radius: 50%; }
-  .dot-sell { background: #4caf50; box-shadow: 0 0 8px rgba(76, 175, 80, 0.4); }
-  .dot-buy { background: #ff9800; box-shadow: 0 0 8px rgba(255, 152, 0, 0.4); }
-  .dot-match { background: var(--yellow); box-shadow: 0 0 8px rgba(255, 230, 0, 0.4); }
+  .dot-sell { background: #4caf50; box-shadow: 0 0 8px rgba(76,175,80,0.4); }
+  .dot-buy { background: #ff9800; box-shadow: 0 0 8px rgba(255,152,0,0.4); }
+  .dot-match { background: var(--yellow); box-shadow: 0 0 8px rgba(255,230,0,0.4); }
 
-  .section-title {
-    font-size: 12px; font-weight: 700; text-transform: uppercase;
-    letter-spacing: 1px; color: var(--text-muted); margin-bottom: 12px;
-  }
+  .section-title { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); margin-bottom: 12px; }
 
   .queue-list { display: flex; flex-direction: column; gap: 8px; }
   .queue-item {
     display: flex; align-items: center; justify-content: space-between;
-    padding: 12px 14px; border-radius: 10px; background: var(--bg);
-    border: 1px solid var(--border); transition: all 0.2s;
+    padding: 12px 14px; border-radius: 10px; background: var(--bg); border: 1px solid var(--border); transition: all 0.2s;
   }
   .queue-item:hover { border-color: var(--border-hover); background: var(--card-hover); }
   .queue-num {
-    width: 30px; height: 30px; border-radius: 50%; background: var(--yellow);
-    color: #000; display: flex; align-items: center; justify-content: center;
-    font-size: 12px; font-weight: 800; flex-shrink: 0; margin-right: 12px;
+    width: 30px; height: 30px; border-radius: 50%; background: var(--yellow); color: #000;
+    display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 800;
+    flex-shrink: 0; margin-right: 12px;
   }
   .queue-info { flex: 1; min-width: 0; }
   .queue-name { font-weight: 700; font-size: 15px; }
@@ -209,27 +122,34 @@
   .add-row input:focus { outline: none; border-color: var(--yellow); }
   .add-row input::placeholder { color: var(--text-muted); }
 
-  .empty {
-    text-align: center; padding: 50px 20px; color: var(--text-muted); font-size: 14px;
-  }
+  .empty { text-align: center; padding: 50px 20px; color: var(--text-muted); font-size: 14px; }
 
   .toast {
-    position: fixed; bottom: 24px; left: 50%;
-    transform: translateX(-50%) translateY(100px);
-    background: var(--yellow); color: #000; padding: 14px 24px;
-    border-radius: 12px; font-size: 14px; font-weight: 700; z-index: 200;
-    opacity: 0; transition: all 0.3s ease;
-    box-shadow: 0 4px 20px rgba(255, 230, 0, 0.3);
-    text-transform: uppercase; letter-spacing: 0.5px; white-space: nowrap;
+    position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(100px);
+    background: var(--yellow); color: #000; padding: 14px 24px; border-radius: 12px;
+    font-size: 14px; font-weight: 700; z-index: 200; opacity: 0; transition: all 0.3s ease;
+    box-shadow: 0 4px 20px rgba(255,230,0,0.3); text-transform: uppercase; letter-spacing: 0.5px; white-space: nowrap;
   }
   .toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }
 
-  .sync-status {
+  .sync-bar {
+    display: flex; align-items: center; justify-content: space-between;
     font-size: 11px; color: var(--text-muted); text-align: center;
-    margin-top: 20px; padding-top: 14px; border-top: 1px solid var(--border);
+    margin-top: 20px; padding-top: 14px; border-top: 1px solid var(--border); flex-wrap: wrap; gap: 8px;
   }
-  .sync-online { color: #4caf50; }
-  .sync-offline { color: #ff4444; }
+  .sync-pill {
+    display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px;
+    border-radius: 20px; background: var(--card); border: 1px solid var(--border);
+    transition: all 0.3s;
+  }
+  .sync-pill.online { border-color: #4caf50; color: #4caf50; }
+  .sync-pill.offline { border-color: #ff4444; color: #ff4444; }
+  .sync-pill.syncing { border-color: var(--yellow); color: var(--yellow); }
+  .pulse-dot {
+    width: 6px; height: 6px; border-radius: 50%; background: currentColor;
+    animation: pulse 1.5s infinite;
+  }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
 
   .hidden { display: none !important; }
   .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
@@ -251,9 +171,15 @@
 
 <div class="section-header">
   <h2>Evenementen</h2>
-  <button class="btn btn-yellow" id="toggleBtn" onclick="toggleForm()">
-    <span id="toggleIcon">+</span> <span id="toggleText">Nieuw evenement</span>
-  </button>
+  <div style="display:flex; gap:8px; align-items:center;">
+    <button class="btn btn-outline btn-small" onclick="forceSync()" title="Forceer verversen als sync hikt">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"></polyline><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path></svg>
+      Ververs
+    </button>
+    <button class="btn btn-yellow" id="toggleBtn" onclick="toggleForm()">
+      <span id="toggleIcon">+</span> <span id="toggleText">Nieuw evenement</span>
+    </button>
+  </div>
 </div>
 
 <div id="addEventForm" class="card hidden">
@@ -278,9 +204,7 @@
         <input type="text" id="eventDescription" placeholder="Extra info...">
       </div>
     </div>
-    <button class="btn btn-yellow" onclick="addEvent()" style="width:100%;">
-      Evenement toevoegen
-    </button>
+    <button class="btn btn-yellow" onclick="addEvent()" style="width:100%;">Evenement toevoegen</button>
   </div>
 </div>
 
@@ -288,11 +212,32 @@
   <div class="empty">Nog geen evenementen. Klik op "Nieuw evenement" om te beginnen!</div>
 </div>
 
-<div class="sync-status" id="syncStatus">Verbinden met Firebase...</div>
+<div class="sync-bar" id="syncBar">
+  <div class="sync-pill offline" id="syncPill">
+    <span class="pulse-dot" id="syncDot"></span>
+    <span id="syncText">Verbinden...</span>
+  </div>
+  <span id="syncDetail">Wacht op Firebase...</span>
+</div>
 
 <div class="toast" id="toast">Opgeslagen!</div>
 
 <script>
+  // ===== CACHE BUSTING =====
+  // Voorkom dat browsers deze pagina cachen
+  (function() {
+    // Check of we een oude versie uit cache hebben
+    const buildId = 'v5'; // Verhoog dit bij elke grote update
+    const stored = sessionStorage.getItem('s46_build');
+    if (stored && stored !== buildId) {
+      sessionStorage.setItem('s46_build', buildId);
+      location.reload(true);
+    } else {
+      sessionStorage.setItem('s46_build', buildId);
+    }
+  })();
+
+  // ===== FIREBASE SETUP =====
   const firebaseConfig = {
     databaseURL: "https://studio46-ticketswap-default-rtdb.europe-west1.firebasedatabase.app"
   };
@@ -300,26 +245,77 @@
   const db = firebase.database();
   const eventsRef = db.ref('events');
   let eventsData = {};
+  let isConnected = false;
+  let lastSyncTime = 0;
 
-  db.ref('.info/connected').on('value', s => {
-    const el = document.getElementById('syncStatus');
-    if (s.val() === true) {
-      el.textContent = '● Live verbinding actief — wijzigingen verschijnen realtime';
-      el.className = 'sync-status sync-online';
+  // ===== SYNC STATUS UI =====
+  const syncPill = document.getElementById('syncPill');
+  const syncText = document.getElementById('syncText');
+  const syncDetail = document.getElementById('syncDetail');
+
+  function setSyncStatus(status, text, detail) {
+    syncPill.className = 'sync-pill ' + status;
+    syncText.textContent = text;
+    if (detail) syncDetail.textContent = detail;
+  }
+
+  // ===== CONNECTION MONITORING =====
+  db.ref('.info/connected').on('value', snap => {
+    isConnected = snap.val() === true;
+    if (isConnected) {
+      setSyncStatus('online', 'Live', 'Wijzigingen verschijnen automatisch');
     } else {
-      el.textContent = '● Verbinding verbroken...';
-      el.className = 'sync-status sync-offline';
+      setSyncStatus('offline', 'Offline', 'Verbinding verbroken — wijzigingen worden niet gesynced');
     }
   });
 
-  eventsRef.on('value', snap => {
-    eventsData = snap.val() || {};
-    renderEvents();
-  }, err => {
-    console.error(err);
-    showToast('Fout bij laden data', true);
-  });
+  // ===== DATA LISTENERS (ROBUST) =====
+  // We gebruiken zowel 'value' als 'child_' events voor maximale betrouwbaarheid
+  function attachListeners() {
+    // Hoofdlistener: volledige dataset
+    eventsRef.on('value', snap => {
+      eventsData = snap.val() || {};
+      lastSyncTime = Date.now();
+      setSyncStatus('online', 'Live', 'Laatste sync: ' + new Date().toLocaleTimeString('nl-NL'));
+      renderEvents();
+    }, err => {
+      console.error('Firebase value error:', err);
+      setSyncStatus('offline', 'Fout', 'Kon data niet laden — druk op Ververs');
+    });
 
+    // Extra granular listeners voor zekerheid
+    eventsRef.on('child_added', () => {
+      setSyncStatus('syncing', 'Sync...', 'Nieuw evenement ontvangen');
+      setTimeout(() => setSyncStatus('online', 'Live', 'Laatste sync: ' + new Date().toLocaleTimeString('nl-NL')), 800);
+    });
+    eventsRef.on('child_changed', () => {
+      setSyncStatus('syncing', 'Sync...', 'Wijziging ontvangen');
+      setTimeout(() => setSyncStatus('online', 'Live', 'Laatste sync: ' + new Date().toLocaleTimeString('nl-NL')), 800);
+    });
+    eventsRef.on('child_removed', () => {
+      setSyncStatus('syncing', 'Sync...', 'Evenement verwijderd');
+      setTimeout(() => setSyncStatus('online', 'Live', 'Laatste sync: ' + new Date().toLocaleTimeString('nl-NL')), 800);
+    });
+  }
+
+  attachListeners();
+
+  // ===== FORCE SYNC =====
+  function forceSync() {
+    setSyncStatus('syncing', 'Laden...', 'Data opnieuw ophalen...');
+    eventsRef.once('value').then(snap => {
+      eventsData = snap.val() || {};
+      renderEvents();
+      setSyncStatus('online', 'Live', 'Handmatig ververst: ' + new Date().toLocaleTimeString('nl-NL'));
+      showToast('Data ververst');
+    }).catch(err => {
+      console.error(err);
+      setSyncStatus('offline', 'Fout', 'Verversen mislukt — probeer opnieuw');
+      showToast('Verversen mislukt', true);
+    });
+  }
+
+  // ===== TOAST =====
   function showToast(msg, isError) {
     const t = document.getElementById('toast');
     t.textContent = msg;
@@ -329,21 +325,21 @@
     setTimeout(() => t.classList.remove('show'), 2500);
   }
 
+  // ===== FORM TOGGLE =====
   function toggleForm() {
     const form = document.getElementById('addEventForm');
     const icon = document.getElementById('toggleIcon');
     const text = document.getElementById('toggleText');
     const hidden = form.classList.toggle('hidden');
     if (hidden) {
-      icon.textContent = '+';
-      text.textContent = 'Nieuw evenement';
+      icon.textContent = '+'; text.textContent = 'Nieuw evenement';
     } else {
-      icon.textContent = '−';
-      text.textContent = 'Annuleren';
+      icon.textContent = '−'; text.textContent = 'Annuleren';
       document.getElementById('eventName').focus();
     }
   }
 
+  // ===== HELPERS =====
   function formatDate(d) {
     if (!d) return '';
     return new Date(d).toLocaleDateString('nl-NL', { weekday: 'short', day: 'numeric', month: 'short', year: 'numeric' });
@@ -359,12 +355,15 @@
     return Math.floor(h / 24) + ' dagen geleden';
   }
 
+  // ===== CRUD OPERATIONS =====
   function addEvent() {
     const name = document.getElementById('eventName').value.trim();
     const date = document.getElementById('eventDate').value;
     const loc = document.getElementById('eventLocation').value.trim();
     const desc = document.getElementById('eventDescription').value.trim();
     if (!name || !date) { showToast('Vul naam en datum in', true); return; }
+
+    setSyncStatus('syncing', 'Opslaan...', 'Evenement wordt verzonden...');
     eventsRef.push().set({
       name, date, location: loc || 'Onbekend', description: desc || '',
       created: Date.now(), offers: {}, requests: {}
@@ -375,12 +374,18 @@
       document.getElementById('eventLocation').value = '';
       document.getElementById('eventDescription').value = '';
       toggleForm();
-    }).catch(() => showToast('Fout bij opslaan', true));
+    }).catch(err => {
+      console.error(err);
+      showToast('Fout bij opslaan', true);
+      setSyncStatus('offline', 'Fout', 'Opslaan mislukt — check verbinding');
+    });
   }
 
   function deleteEvent(id) {
     if (!confirm('Weet je zeker dat je dit evenement wilt verwijderen?')) return;
-    eventsRef.child(id).remove().then(() => showToast('Evenement verwijderd')).catch(() => showToast('Fout', true));
+    eventsRef.child(id).remove()
+      .then(() => showToast('Evenement verwijderd'))
+      .catch(() => showToast('Fout', true));
   }
 
   function addOffer(eid) {
@@ -400,12 +405,15 @@
       .catch(() => showToast('Fout', true));
   }
   function removeOffer(eid, oid) {
-    eventsRef.child(eid).child('offers').child(oid).remove().then(() => showToast('Verwijderd')).catch(() => showToast('Fout', true));
+    eventsRef.child(eid).child('offers').child(oid).remove()
+      .then(() => showToast('Verwijderd')).catch(() => showToast('Fout', true));
   }
   function removeRequest(eid, rid) {
-    eventsRef.child(eid).child('requests').child(rid).remove().then(() => showToast('Verwijderd')).catch(() => showToast('Fout', true));
+    eventsRef.child(eid).child('requests').child(rid).remove()
+      .then(() => showToast('Verwijderd')).catch(() => showToast('Fout', true));
   }
 
+  // ===== RENDER =====
   function renderEvents() {
     const container = document.getElementById('eventsList');
     const ids = Object.keys(eventsData);
@@ -414,6 +422,7 @@
       return;
     }
     const sorted = ids.sort((a, b) => new Date(eventsData[a].date) - new Date(eventsData[b].date));
+
     container.innerHTML = sorted.map(id => {
       const ev = eventsData[id];
       const offers = ev.offers || {};
